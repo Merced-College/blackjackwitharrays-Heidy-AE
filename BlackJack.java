@@ -1,8 +1,14 @@
+//Heidy Acosta Emeterio
+//1/21/25
+// Assignment to update blackjack
+
 import java.util.Random;
 import java.util.Scanner;
 
 public class BlackJack {
 
+    //Constant - connot cahnge their value
+    //Static - I can use these in every function without having to pass them in
     private static final String[] SUITS = { "Hearts", "Diamonds", "Clubs", "Spades" };
     private static final String[] RANKS = { "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King",
             "Ace" };
@@ -29,7 +35,7 @@ public class BlackJack {
 
         scanner.close();
     }
-
+    // Initilizing 
     private static void initializeDeck() {
         for (int i = 0; i < DECK.length; i++) {
             DECK[i] = i;
@@ -39,6 +45,7 @@ public class BlackJack {
     private static void shuffleDeck() {
         Random random = new Random();
         for (int i = 0; i < DECK.length; i++) {
+          //Swapping two intergers in the array 
             int index = random.nextInt(DECK.length);
             int temp = DECK[i];
             DECK[i] = DECK[index];
