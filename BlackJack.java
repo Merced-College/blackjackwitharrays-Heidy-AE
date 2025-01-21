@@ -68,6 +68,8 @@ public class BlackJack {
         int card2 = dealCard();
         System.out.println("Your cards: " + RANKS[card1] + " of " + SUITS[DECK[currentCardIndex] % 4] + " and "
                 + RANKS[card2] + " of " + SUITS[card2 / 13]);
+                //if statement -  taking both cards and scanning for possible Aces if it does, it will  prompt a question of values change 
+                //if (card 1 || card 2 )
         return cardValue(card1) + cardValue(card2);
     }
 
@@ -90,6 +92,10 @@ public class BlackJack {
                 // Tells you the new card you pulled
                 System.out.println("You drew a " + RANKS[newCard] + " of " + SUITS[DECK[currentCardIndex] % 4]);
                 // Tells you the specifics of the new card you pulled (like the number, and the suit)
+                //if (newCard == "Ace") {
+                //
+                //}
+
                 if (playerTotal > 21) {
                 // If the player's total is over 21, then the game will not give you the option to hit or stand anymore
                     break;
