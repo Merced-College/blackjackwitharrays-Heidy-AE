@@ -109,20 +109,26 @@ public class BlackJack {
     }
 
     private static int dealerTurn(int dealerTotal) {
-        // Calculates when the dealer is allowed to stop hitting his cards
-        while (dealerTotal < 17) {
-            // (Dealer is only allowed to stop hitting if his score is 17 or over)
-            int newCard = dealCard();
-            dealerTotal += cardValue(newCard);
+    // Dealer continues hitting until the total is 17 or more
+    while (dealerTotal < 17) {
+        int newCard = dealCard();
+        int cardValue = cardValue(newCard);
+
+        // Adjust Ace value if necessary
+        if (cardValue == 11 && dealerTotal + cardValue > 21) {
+            cardValue = 1; // Treat Ace as 1 if 11 would cause a bust
         }
-        System.out.println("Dealer's total is " + dealerTotal);
-            if (cardValue(newCard) == 1 && dealerTotal < 11) {
-                			newCard = 11;	
-            }
-            ("total is " + dealerTotal);
-        return dealerTotal;
-        // Displays the dealer's total score
+
+        dealerTotal += cardValue;
+
+        // Display the card drawn by the dealer
+        System.out.println("Dealer drew a " + RANKS[newCard % 13] + " of " + SUITS[newCard / 13]);
     }
+
+    // Final dealer total
+    System.out.println("Dealer's total is " + dealerTotal);
+    return dealerTotal;
+}
 
     private static void determineWinner(int playerTotal, int dealerTotal) {
         if (dealerTotal > 21 || playerTotal > dealerTotal) {
