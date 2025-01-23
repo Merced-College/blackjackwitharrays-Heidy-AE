@@ -69,7 +69,7 @@ public class BlackJack {
         System.out.println("Your cards: " + RANKS[card1] + " of " + SUITS[DECK[currentCardIndex] % 4] + " and "
                 + RANKS[card2] + " of " + SUITS[card2 / 13]);
                 //if statement -  taking both cards and scanning for possible Aces if it does, it will  prompt a question of values change 
-                //if (card 1 || card 2 )
+                //if (card 1 || card 2 ) 
         return cardValue(card1) + cardValue(card2);
     }
 
@@ -140,6 +140,7 @@ public class BlackJack {
 
     private static int cardValue(int card) {
         return card < 9 ? card + 2 : 10;
+        
     }
 
     int linearSearch(int[] numbers, int key) {
