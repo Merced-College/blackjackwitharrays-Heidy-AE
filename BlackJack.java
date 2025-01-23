@@ -118,7 +118,8 @@ public class BlackJack {
         System.out.println("Dealer's total is " + dealerTotal);
             if (cardValue(newCard) == 1 && dealerTotal < 11) {
                 			newCard = 11;	
-            }"total is " + dealerTotal);
+            }
+            ("total is " + dealerTotal);
         return dealerTotal;
         // Displays the dealer's total score
     }
@@ -140,11 +141,15 @@ public class BlackJack {
         return DECK[currentCardIndex++] % 13;
     }
 
-    private static int cardValue(int card, boolean useHighValue) {
-    if (card % 13  == 0) { // 
-        return useHighValue ? 11 : 1; // High value: 11, Low value: 1
+    private static int cardValue(int card) {
+    int rank = card % 13;
+    if (rank == 0) { // Ace
+        return 11; // Default to high value
+    } else if (rank >= 9) { // Face cards
+        return 10;
+    } else {
+        return rank + 2; // Numeric cards
     }
-    return card % 13 < 9 ? card + 2 : 10; // Other cards as before
 }
 
     int linearSearch(int[] numbers, int key) {
