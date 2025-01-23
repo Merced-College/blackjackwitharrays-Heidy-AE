@@ -63,15 +63,17 @@ public class BlackJack {
     }
 
     private static int dealInitialPlayerCards() {
-       // take two cards of the deck to deal to the player 
-        int card1 = dealCard();
-        int card2 = dealCard();
-        System.out.println("Your cards: " + RANKS[card1] + " of " + SUITS[DECK[currentCardIndex] % 4] + " and "
-                + RANKS[card2] + " of " + SUITS[card2 / 13]);
-                //if statement -  taking both cards and scanning for possible Aces if it does, it will  prompt a question of values change 
-                //if (card 1 || card 2 ) 
-        return cardValue(card1) + cardValue(card2);
-    }
+    // Take two cards from the deck to deal to the player
+    int card1 = dealCard();
+    int card2 = dealCard();
+
+    // Display the cards drawn
+    System.out.println("Your cards: " + RANKS[card1 % 13] + " of " + SUITS[card1 / 13] + " and "
+            + RANKS[card2 % 13] + " of " + SUITS[card2 / 13]);
+
+    // Return the total value of the two cards
+    return cardValue(card1) + cardValue(card2);
+}
 
     private static int dealInitialDealerCards() {
         //Takes another card from randomized array for the dealer
@@ -92,9 +94,6 @@ public class BlackJack {
                 // Tells you the new card you pulled
                 System.out.println("You drew a " + RANKS[newCard] + " of " + SUITS[DECK[currentCardIndex] % 4]);
                 // Tells you the specifics of the new card you pulled (like the number, and the suit)
-                //if (newCard == "Ace") {
-                //
-                //}
 
                 if (playerTotal > 21) {
                 // If the player's total is over 21, then the game will not give you the option to hit or stand anymore
@@ -117,6 +116,9 @@ public class BlackJack {
             dealerTotal += cardValue(newCard);
         }
         System.out.println("Dealer's total is " + dealerTotal);
+            if (cardValue(newCard) == 1 && dealerTotal < 11) {
+                			newCard = 11;	
+            }"total is " + dealerTotal);
         return dealerTotal;
         // Displays the dealer's total score
     }
@@ -138,10 +140,12 @@ public class BlackJack {
         return DECK[currentCardIndex++] % 13;
     }
 
-    private static int cardValue(int card) {
-        return card < 9 ? card + 2 : 10;
-        
+    private static int cardValue(int card, boolean useHighValue) {
+    if (card % 13  == 0) { // 
+        return useHighValue ? 11 : 1; // High value: 11, Low value: 1
     }
+    return card % 13 < 9 ? card + 2 : 10; // Other cards as before
+}
 
     int linearSearch(int[] numbers, int key) {
         int i = 0;
